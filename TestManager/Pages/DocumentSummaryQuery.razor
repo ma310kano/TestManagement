@@ -1,0 +1,69 @@
+﻿@page "/documents"
+
+@using TestManagement.Application
+@using TestManagement.Application.Data
+@inject NavigationManager Navigation
+@inject ITestDocumentImportingService TestDocumentImportingService
+@inject ITestDocumentSummaryQueryService TestDocumentSummaryQueryService
+
+<h1>ドキュメント</h1>
+
+<button class="btn btn-primary" @onclick="ImportAsync">インポート</button>
+
+@if (_summaries == null)
+{
+	<p><em>Loading...</em></p>
+}
+else
+{
+	<table class="table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>テスト名</th>
+				<th>バージョン</th>
+				<th>対象数</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (TestDocumentSummaryData summary in _summaries)
+			{
+				<tr class="link" @onclick="(() => ClickRow(summary.Id))">
+					<td>@summary.Id</td>
+					<td>@summary.Name</td>
+					<td>@summary.Version</td>
+					<td>@summary.TargetCount</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+
+@code {
+	private IEnumerable<TestDocumentSummaryData> _summaries;
+
+	protected override async Task OnInitializedAsync()
+	{
+		await QueryAsync();
+	}
+
+	private async Task QueryAsync()
+	{
+		_summaries = await TestDocumentSummaryQueryService.QueryAsync();
+	}
+
+	private void ClickRow(string id)
+	{
+		Navigation.NavigateTo($"documents/{id}");
+	}
+
+	private async Task ImportAsync()
+	{
+		FileResult result = await FilePicker.Default.PickAsync();
+		if (result is null) return;
+
+		await TestDocumentImportingService.ImportAsync(result.FullPath);
+
+		await QueryAsync();
+	}
+}

@@ -1,0 +1,143 @@
+{
+  "Id": {
+    "Value": "TestDocument"
+  },
+  "Name": {
+    "Value": "テストドキュメント"
+  },
+  "Version": {
+    "Value": "1.0"
+  },
+  "Targets": [
+    {
+      "Name": {
+        "Value": "対象1"
+      },
+      "Items": [
+        {
+          "Name": {
+            "Value": "項目 1-1"
+          },
+          "ExecutionPrerequisites": [
+            {
+              "Value": "実行前提条件 1-1-1"
+            },
+            {
+              "Value": "実行前提条件 1-1-2"
+            }
+          ],
+          "ExecutionProcedures": [
+            {
+              "Value": "実行手順 1-1-1"
+            },
+            {
+              "Value": "実行手順 1-1-2"
+            }
+          ],
+          "ExpectedResults": [
+            {
+              "Value": "期待結果 1-1-1"
+            },
+            {
+              "Value": "期待結果 1-1-2"
+            }
+          ]
+        },
+        {
+          "Name": {
+            "Value": "項目 1-2"
+          },
+          "ExecutionPrerequisites": [
+            {
+              "Value": "実行前提条件 1-2-1"
+            },
+            {
+              "Value": "実行前提条件 1-2-2"
+            }
+          ],
+          "ExecutionProcedures": [
+            {
+              "Value": "実行手順 1-2-1"
+            },
+            {
+              "Value": "実行手順 1-2-2"
+            }
+          ],
+          "ExpectedResults": [
+            {
+              "Value": "期待結果 1-2-1"
+            },
+            {
+              "Value": "期待結果 1-2-2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": {
+        "Value": "対象2"
+      },
+      "Items": [
+        {
+          "Name": {
+            "Value": "項目 2-1"
+          },
+          "ExecutionPrerequisites": [
+            {
+              "Value": "実行前提条件 2-1-1"
+            },
+            {
+              "Value": "実行前提条件 2-1-2"
+            }
+          ],
+          "ExecutionProcedures": [
+            {
+              "Value": "実行手順 2-1-1"
+            },
+            {
+              "Value": "実行手順 2-1-2"
+            }
+          ],
+          "ExpectedResults": [
+            {
+              "Value": "期待結果 2-1-1"
+            },
+            {
+              "Value": "期待結果 2-1-2"
+            }
+          ]
+        },
+        {
+          "Name": {
+            "Value": "項目 2-2"
+          },
+          "ExecutionPrerequisites": [
+            {
+              "Value": "実行前提条件 2-2-1"
+            },
+            {
+              "Value": "実行前提条件 2-2-2"
+            }
+          ],
+          "ExecutionProcedures": [
+            {
+              "Value": "実行手順 2-2-1"
+            },
+            {
+              "Value": "実行手順 2-2-2"
+            }
+          ],
+          "ExpectedResults": [
+            {
+              "Value": "期待結果 2-2-1"
+            },
+            {
+              "Value": "期待結果 2-2-2"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

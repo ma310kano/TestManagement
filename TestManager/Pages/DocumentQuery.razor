@@ -1,0 +1,63 @@
+﻿@page "/documents/{Id}"
+
+@using TestManagement.Application
+@using TestManagement.Application.Data;
+@inject NavigationManager Navigation
+@inject ITestDocumentQueryService TestDocumentQueryService
+
+<button class="btn btn-secondary" @onclick="Back">戻る</button>
+
+@if (_document is not null)
+{
+	<h1>@_document.Name</h1>
+
+	<p>Version @_document.Version</p>
+
+	@foreach (TestTargetData target in _document.Targets)
+	{
+		<h2>@target.Name</h2>
+		@foreach (TestItemData item in target.Items)
+		{
+			<h3>@item.Name</h3>
+			<h4>実行前提条件</h4>
+			<ul>
+				@foreach (string executionPrerequisite in item.ExecutionPrerequisites)
+				{
+					<li>@executionPrerequisite</li>
+				}
+			</ul>
+			<h4>実行手順</h4>
+			<ul>
+				@foreach (string executionProcedure in item.ExecutionProcedures)
+				{
+					<li>@executionProcedure</li>
+				}
+			</ul>
+			<h4>期待結果</h4>
+			<ul>
+				@foreach (string expectedResult in item.ExpectedResults)
+				{
+					<li>@expectedResult</li>
+				}
+			</ul>
+		}
+	}
+}
+
+@code {
+
+	private TestDocumentData _document;
+
+	[Parameter]
+	public string Id{ get; set; }
+
+	protected override async Task OnInitializedAsync()
+	{
+		_document = await TestDocumentQueryService.QuerySingleAsync(Id);
+	}
+
+	private void Back()
+	{
+		Navigation.NavigateTo("/documents");
+	}
+}
