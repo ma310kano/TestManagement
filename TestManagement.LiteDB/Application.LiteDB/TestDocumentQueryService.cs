@@ -32,7 +32,7 @@ namespace TestManagement.Application.LiteDB
 		{
 			s_mapper = new BsonMapper();
 			s_mapper.RegisterType(
-				serialize: document =>
+				serialize: _ =>
 				{
 					return BsonValue.Null;
 				},
