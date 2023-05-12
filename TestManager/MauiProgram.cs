@@ -24,7 +24,13 @@ namespace TestManager
 		builder.Services.AddBlazorWebViewDeveloperTools();
 #endif
 			{
-				string connectionString = Path.Combine(FileSystem.Current.AppDataDirectory, "TestManager", "TestManagement.db");
+				string connectionString;
+				{
+					string appDirPath = Path.Combine(FileSystem.Current.AppDataDirectory, "TestManager");
+					if (!Directory.Exists(appDirPath)) Directory.CreateDirectory(appDirPath);
+
+					connectionString = Path.Combine(appDirPath, "TestManagement.db");
+				}
 
 				Dictionary<string, string> collection = new()
 				{
